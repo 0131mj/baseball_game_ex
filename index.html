@@ -12,20 +12,33 @@
 			margin:0;
 		}
 		input[type="tel"]{
-			padding:1rem;
-			border-radius:0.5rem 0rem 0rem 0.5rem;
+			height:50px;
+			padding:0 1rem;
+			-webkit-border-radius:0.5rem 0rem 0rem 0.5rem;
+			-moz-border-radius:0.5rem 0rem 0rem 0.5rem;
+			-ms-border-radius:0.5rem 0rem 0rem 0.5rem; 	
+			-o-border-radius:0.5rem 0rem 0rem 0.5rem;
+			border-radius:0.5rem 0rem 0rem 0.5rem;		
 			border:1px solid #CCC;
 			box-shadow: none;
 			outline: none;
+			box-sizing: border-box;
 		}
 		input[type="submit"]{
-			padding:1rem;
-			border-radius:0rem 0.5rem 0.5rem 0rem;
+			height:50px;
+			padding:0 1rem;
+			-webkit-border-radius:0rem 0.5rem 0.5rem 0rem; 
+			-moz-border-radius:0rem 0.5rem 0.5rem 0rem; 	
+			-ms-border-radius:0rem 0.5rem 0.5rem 0rem; 	
+			-o-border-radius:0rem 0.5rem 0.5rem 0rem; 	
+			border-radius:0rem 0.5rem 0.5rem 0rem;		
 			border:1px solid #CCC;
 			border-left:0;
 			background-color: #EEE;
 			box-shadow: none;
 			outline: none;
+			box-sizing: border-box;
+			text-decoration: none;
 		}
 		#reset{
 			width:4rem;
@@ -51,6 +64,7 @@
 			display: -ms-flex;
 			display: -o-flex;
 			display: flex;
+			align-items: center;
 		}
 		
 		#rule{
