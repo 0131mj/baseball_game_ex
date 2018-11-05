@@ -3,6 +3,7 @@ html{
 	background-color: aliceblue;
 	font-family: 'Noto Sans KR', sans-serif;
 }
+
 body{
 	background-color: #FFF;
 	max-width: 960px;
@@ -10,6 +11,9 @@ body{
 	position: relative;
 	height:calc(100vh - 3rem);
 	margin:0 auto;
+}
+h3{
+	margin: 0.8rem 0;
 }
 input[type="tel"]{
 	height:50px;
@@ -71,8 +75,9 @@ input[type="submit"]{
 	color:#FFF;
 }
 #info{
-	line-height: 1.5rem;
+	line-height: 1.4rem;
 	color:#555;
+	font-size:0.9rem;
 }
 
 #form{
