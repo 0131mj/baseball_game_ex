@@ -1,0 +1,130 @@
+html{
+	background-color: aliceblue;
+}
+body{
+	background-color: #FFF;
+	max-width: 960px;
+	padding:1.5rem 2rem;
+	position: relative;
+	height:calc(100vh - 4rem);
+	margin:0 auto;
+}
+input[type="tel"]{
+	height:50px;
+	padding:0 1rem;
+	margin:0;
+	-webkit-border-radius:0.5rem 0rem 0rem 0.5rem;
+	-moz-border-radius:0.5rem 0rem 0rem 0.5rem;
+	-ms-border-radius:0.5rem 0rem 0rem 0.5rem; 	
+	-o-border-radius:0.5rem 0rem 0rem 0.5rem;
+	border-radius:0.5rem 0rem 0rem 0.5rem;		
+	-webkit-appearance: none;
+	-moz-webkit-appearance:none;
+	border:1px solid #777;
+	-moz-box-shadow:    none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	outline: none;
+	box-sizing: border-box;
+	font-size:1rem;
+}
+input[type="submit"]{
+	height:50px;
+	padding:0 1rem;
+	margin:0;
+	-webkit-border-radius:0rem 0.5rem 0.5rem 0rem; 
+	-moz-border-radius:0rem 0.5rem 0.5rem 0rem; 	
+	-ms-border-radius:0rem 0.5rem 0.5rem 0rem; 	
+	-o-border-radius:0rem 0.5rem 0.5rem 0rem; 	
+	border-radius:0rem 0.5rem 0.5rem 0rem;	
+	-webkit-appearance: none;
+	-moz-webkit-appearance:none;
+	border:1px solid #777;
+	border-left:0;
+	background-color: #777;
+	-moz-box-shadow:    none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	outline: none;
+	box-sizing: border-box;
+	text-decoration: none;
+	font-size:1rem;
+	color:#FFF;
+}
+#reset{
+	width:4rem;
+	height: 4rem;
+	background-color: aliceblue;
+	color:#AAA;
+	font-size:0.7rem;
+	border-radius: 50%;
+	box-shadow: none;
+	border:none;
+	position: absolute;
+	bottom:0px;
+	right:2rem;
+}
+#reset.on{
+	background-color: royalblue;
+	color:#FFF;
+}
+#info{
+	line-height: 2rem;
+	color:#555;
+}
+
+#form{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	align-items: center;
+}
+
+#rule{
+	width:calc(100% - 4rem);
+	position: absolute;
+	bottom:0;
+	padding-top:1rem;
+	border-top: 1px solid #EEE;
+	font-size:0.8rem;
+	color:#999;
+}
+#result{
+	color: #555;
+}
+
+#result > div {
+	margin: 0;
+	border-bottom: 1px #EEE solid;
+	padding-bottom: 5px;
+	margin-bottom:5px;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+}
+
+#result > div > p {
+	margin: 0;
+}
+.strike, .ball{
+	font-weight:600;
+}
+
+.strike{
+	color:crimson
+}
+
+.ball{
+	color:royalblue
+}
+
+.index{
+	width:5.5rem;
+}
+.trial{
+	width:3rem;
+}

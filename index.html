@@ -4,95 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>숫자 야구게임</title>
-	<style>
-		body{
-			padding:1.5rem 2rem;
-			position: relative;
-			height:calc(100vh - 4rem);
-			margin:0;
-		}
-		input[type="tel"]{
-			height:50px;
-			padding:0 1rem;
-			margin:0;
-			-webkit-border-radius:0.5rem 0rem 0rem 0.5rem;
-			-moz-border-radius:0.5rem 0rem 0rem 0.5rem;
-			-ms-border-radius:0.5rem 0rem 0rem 0.5rem; 	
-			-o-border-radius:0.5rem 0rem 0rem 0.5rem;
-			border-radius:0.5rem 0rem 0rem 0.5rem;		
-			-webkit-appearance: none;
-			-moz-webkit-appearance:none;
-			border:1px solid royalblue;
-			-moz-box-shadow:    none;
-  			-webkit-box-shadow: none;
-			box-shadow: none;
-			outline: none;
-			box-sizing: border-box;
-			font-size:1rem;
-		}
-		input[type="submit"]{
-			height:50px;
-			padding:0 1rem;
-			margin:0;
-			-webkit-border-radius:0rem 0.5rem 0.5rem 0rem; 
-			-moz-border-radius:0rem 0.5rem 0.5rem 0rem; 	
-			-ms-border-radius:0rem 0.5rem 0.5rem 0rem; 	
-			-o-border-radius:0rem 0.5rem 0.5rem 0rem; 	
-			border-radius:0rem 0.5rem 0.5rem 0rem;	
-			-webkit-appearance: none;
-			-moz-webkit-appearance:none;
-			border:1px solid royalblue;
-			border-left:0;
-			background-color: royalblue;
-			-moz-box-shadow:    none;
-  			-webkit-box-shadow: none;
-			box-shadow: none;
-			outline: none;
-			box-sizing: border-box;
-			text-decoration: none;
-			font-size:1rem;
-			color:#FFF;
-		}
-		#reset{
-			width:4rem;
-			height: 4rem;
-			background-color: aliceblue;
-			color:#AAA;
-			font-size:0.7rem;
-			border-radius: 50%;
-			box-shadow: none;
-			border:none;
-			position: absolute;
-			bottom:0px;
-			right:2rem;
-		}
-		#info{
-			line-height: 2rem;
-			color:#555;
-		}
-		
-		#form{
-			display: -webkit-flex;
-			display: -moz-flex;
-			display: -ms-flex;
-			display: -o-flex;
-			display: flex;
-			align-items: center;
-		}
-		
-		#rule{
-			width:calc(100% - 4rem);
-			position: absolute;
-			bottom:0;
-			padding-top:1rem;
-			border-top: 1px solid #EEE;
-			font-size:0.8rem;
-			color:#999;
-		}
-		#result{
-			color: #555;
-		}
-	</style>
+	<link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <h3>숫자 야구게임</h3>
@@ -119,6 +31,7 @@
 	var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 	var trial = 0;
 	var trialLimit = 10;
+	var isFinished = false;
 	
 	function makeAnswer(num){
 		
@@ -145,34 +58,44 @@
 	
 	form.addEventListener('submit', function(e){
 		e.preventDefault();
-		if(trial < trialLimit){
+		
+		if(!isFinished){
 			trial++;
 			
-		var tryVal = document.getElementById('try').value;
+			var tryVal = document.getElementById('try').value;
 		
-		var result = {
-			S : 0,
-			B : 0
-		}
+			var result = {
+				S : 0,
+				B : 0
+			}
 		
-		for(var i = 0; i<cnt; i++){
-			var currentNum = parseFloat(tryVal[i]);
-			var idx = answer.indexOf(currentNum);
-			
-			if(idx === i){
-				result['S'] += 1;
-			}else if(idx > -1){
-				result['B'] += 1;
+			for(var i = 0; i<cnt; i++){
+				var currentNum = parseFloat(tryVal[i]);
+				var idx = answer.indexOf(currentNum);
+
+				if(idx === i){
+					result['S'] += 1;
+				}else if(idx > -1){
+					result['B'] += 1;
+				}
+
 			}
 			
-		}
-		if(result['S'] === cnt){
-			result = "HOME RUN !!";
-		}else if(trial === 10){
-			result = "OUT!! 정답 : " + answer;
-		}
-		resultArea.innerHTML += trial + '회 시도 : ' + tryVal + ' ' + JSON.stringify(result) +  '<br/>';
-		form.reset();
+			if(result['S'] === cnt){
+				result = "HOME RUN !!";
+				isFinished = true;
+				document.getElementById('reset').classList.add('on');
+			}else if(trial === 10){
+				result = "OUT!! 정답 : " + answer;
+				isFinished = true;
+				document.getElementById('reset').classList.add('on');
+			}else{
+				result = `<p class='result'><span class='strike'>S</span>:${result.S} <span class='ball'>B</span>:${result.B}</p>`	
+			}
+				resultArea.innerHTML += `<div><p class='index'>${trial}회 시도 : </p><p class='trial'> ${tryVal}</p> ${result} </div>`;
+			
+			form.reset();
+			console.log(answer);
 		}
 	});
 </script>
