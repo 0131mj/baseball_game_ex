@@ -96,7 +96,7 @@ input[type="submit"]{
 }
 #result{
 	color: #555;
-	font-size:1rem;
+	font-size:0.95rem;
 }
 
 #result > div {
