@@ -12,7 +12,8 @@
 	4자리 숫자를 맞추는 게임입니다.<br/>(예: 0817, 중복없음)<br/>
 </p>
 <form action="" id="form">
-	<input type="tel" name="try" id="try" autocomplete="off" placeholder="4자리 숫자를 입력하세요">
+	<input type="tel" name="try" id="try" maxlength="4" minlength="4"
+	autocomplete="off" placeholder="4자리 숫자를 입력하세요">
 	<input type="submit" value="입력">
 </form>
 <p id="result"></p>
@@ -57,12 +58,20 @@
 	var resultArea = document.getElementById('result');
 	
 	form.addEventListener('submit', function(e){
+		
 		e.preventDefault();
 		
 		if(!isFinished){
-			trial++;
+			
 			
 			var tryVal = document.getElementById('try').value;
+			
+			if(tryVal.lenght < 4){
+				alert('4자리 이상 입력해주세요.');
+				return;
+			}
+						
+			
 		
 			var result = {
 				S : 0,
@@ -71,16 +80,24 @@
 		
 			for(var i = 0; i<cnt; i++){
 				var currentNum = parseFloat(tryVal[i]);
+				
+				/*중복검사*/
+				const splitted = tryVal.replace(`${currentNum}`,'');
+				if(splitted.indexOf(`${currentNum}`) > -1){
+					alert('숫자는 중복 없이 입력해주세요.');
+					return;
+			   	}				
+				
 				var idx = answer.indexOf(currentNum);
 
 				if(idx === i){
 					result['S'] += 1;
 				}else if(idx > -1){
 					result['B'] += 1;
-				}
-
+				}				
 			}
 			
+			trial++;
 			if(result['S'] === cnt){
 				result = "HOME RUN !!";
 				isFinished = true;
@@ -95,7 +112,6 @@
 				resultArea.innerHTML += `<div><p class='index'>${trial}회 시도 : </p><p class='trial'> ${tryVal}</p> ${result} </div>`;
 			
 			form.reset();
-			console.log(answer);
 		}
 	});
 </script>
