@@ -1,12 +1,14 @@
+@import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
 html{
 	background-color: aliceblue;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 body{
 	background-color: #FFF;
 	max-width: 960px;
 	padding:1.5rem 2rem;
 	position: relative;
-	height:calc(100vh - 4rem);
+	height:calc(100vh - 3rem);
 	margin:0 auto;
 }
 input[type="tel"]{
@@ -61,7 +63,7 @@ input[type="submit"]{
 	box-shadow: none;
 	border:none;
 	position: absolute;
-	bottom:0px;
+	bottom:1rem;
 	right:2rem;
 }
 #reset.on{
@@ -85,7 +87,7 @@ input[type="submit"]{
 #rule{
 	width:calc(100% - 4rem);
 	position: absolute;
-	bottom:0;
+	bottom:0.5rem;
 	padding-top:1rem;
 	border-top: 1px solid #EEE;
 	font-size:0.8rem;
