@@ -13,7 +13,7 @@
 </p>
 <form action="" id="form">
 	<input type="tel" name="try" id="try" maxlength="4" minlength="4"
-	autocomplete="off" placeholder="4자리 숫자를 입력하세요">
+	autocomplete="off" placeholder="4자리 숫자를 입력하세요" autofocus>
 	<input type="submit" value="입력">
 </form>
 <p id="result"></p>
@@ -68,6 +68,7 @@
 			
 			if(tryVal.length < 4){
 				alert('4자리 이상 입력해주세요.');
+				document.getElementById('try').focus();
 				return;
 			}
 						
