@@ -96,13 +96,11 @@ input[type="submit"]{
 }
 #result{
 	color: #555;
+	font-size:1rem;
 }
 
 #result > div {
 	margin: 0;
-	border-bottom: 1px #EEE solid;
-	padding-bottom: 0.2rem;
-	margin-bottom:0.2rem;
 	display: -webkit-flex;
 	display: -moz-flex;
 	display: -ms-flex;
