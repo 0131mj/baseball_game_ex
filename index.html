@@ -20,7 +20,7 @@
 <p id="rule">
 	- 숫자가 일치 : B <br/>
 	- 숫자와 자리가 일치 : S <br/>
-	- 총 시도 기회 : 10회
+	- 총 시도 기회 : <span id="trial-limit">10</span>회
 </p>	
 <button id="reset" onClick="window.location.reload()">
 	처음부터<br/>다시하기
@@ -28,57 +28,51 @@
 </body>
 <script>
 	
+	/* 설정 및 초기값 정의 */
 	var cnt = 4
 	var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+	var trialLimit = Number(document.getElementById('trial-limit').textContent)
+		
 	var trial = 0;
-	var trialLimit = 10;
-	var isFinished = false;
+	var isFinished = false;	
 	
-	function makeAnswer(num){
-		
+	/* 엘리먼트 정의 */
+	var resultArea = document.getElementById('result');
+	var form = document.getElementById('form');
+	
+	/* 정답 생성 */
+	var makeAnswer = function (num){
 		var randNumbers = new Array(num);
-		
 		for(var i = 0; i<num; i++){
-
 			var tempIndex = Math.floor((Math.random() * (numbers.length - i)))
 			var tempNum = numbers[tempIndex];
-			
 			randNumbers[i] = numbers[tempIndex];
-			
 			var idx = numbers.indexOf(tempNum);
 			numbers.splice(idx,1);
-			
 		}
 		return randNumbers;
 	}
 	
 	var answer = makeAnswer(cnt);
-	
-	var form = document.getElementById('form');
-	var resultArea = document.getElementById('result');
-	
+		
+	/* 입력값에 따른 결과 실행 */
 	form.addEventListener('submit', function(e){
 		
 		e.preventDefault();
 		
 		if(!isFinished){
-			
-			
 			var tryVal = document.getElementById('try').value;
 			
+			/* 자릿수 검사 */
 			if(tryVal.length < 4){
 				alert('4자리 이상 입력해주세요.');
 				document.getElementById('try').focus();
 				return;
 			}
-						
 			
-		
-			var result = {
-				S : 0,
-				B : 0
-			}
-		
+			var result = {S : 0, B : 0}
+			
+			/* 결과 생성 */
 			for(var i = 0; i<cnt; i++){
 				var currentNum = parseFloat(tryVal[i]);
 				
@@ -89,8 +83,8 @@
 					return;
 			   	}				
 				
+				/*결과 생성*/
 				var idx = answer.indexOf(currentNum);
-
 				if(idx === i){
 					result['S'] += 1;
 				}else if(idx > -1){
@@ -99,18 +93,21 @@
 			}
 			
 			trial++;
+			
+			/* 결과 출력 */
 			if(result['S'] === cnt){
 				result = "HOME RUN !!";
 				isFinished = true;
 				document.getElementById('reset').classList.add('on');
-			}else if(trial === 10){
+			}else if(trial === trialLimit){
 				result = "OUT!! 정답 : " + answer;
 				isFinished = true;
 				document.getElementById('reset').classList.add('on');
 			}else{
 				result = `<p class='result'><span class='strike'>S</span>:${result.S} <span class='ball'>B</span>:${result.B}</p>`	
 			}
-				resultArea.innerHTML += `<div><p class='index'>${trial}회 시도 : </p><p class='trial'> ${tryVal}</p> ${result} </div>`;
+			
+			resultArea.innerHTML += `<div><p class='index'>${trial}회 시도 : </p><p class='trial'> ${tryVal}</p> ${result} </div>`;
 			
 			form.reset();
 		}
